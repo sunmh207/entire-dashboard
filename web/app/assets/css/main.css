@@ -16,7 +16,7 @@
 
 @layer utilities {
     /**
-     * 隐藏滚动条但保持滚动功能
+     * Hide scrollbar but keep scroll functionality
      */
     .scrollbar-hide {
         -ms-overflow-style: none; /* IE and Edge */

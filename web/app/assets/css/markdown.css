@@ -1,6 +1,6 @@
-/* Markdown 内容增强样式 */
+/* Markdown content enhancement styles */
 
-/* 代码块滚动条样式 */
+/* Code block scrollbar styles */
 .markdown-content pre::-webkit-scrollbar {
   height: 8px;
 }
@@ -19,7 +19,7 @@
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* 深色模式下的滚动条 */
+/* Scrollbar in dark mode */
 .dark .markdown-content pre::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
 }
@@ -32,19 +32,19 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* 表格响应式 */
+/* Responsive table */
 .markdown-content table {
   display: block;
   overflow-x: auto;
   white-space: nowrap;
 }
 
-/* 代码块复制按钮位置 */
+/* Code block copy button position */
 .markdown-content pre {
   position: relative;
 }
 
-/* 链接悬停效果 */
+/* Link hover effect */
 .markdown-content a {
   transition: all 0.2s ease;
 }
@@ -53,24 +53,24 @@
   opacity: 0.8;
 }
 
-/* 任务列表样式优化 */
+/* Task list style optimization */
 .markdown-content li:has(input[type="checkbox"]) {
   list-style: none;
   margin-left: -1rem;
 }
 
-/* 引用块嵌套 */
+/* Blockquote nesting */
 .markdown-content blockquote blockquote {
   margin-left: 1rem;
   border-left-width: 2px;
 }
 
-/* 代码块行号（如果需要） */
+/* Code block line numbers (if needed) */
 .markdown-content pre code {
   counter-reset: line;
 }
 
-/* 表格悬停效果 */
+/* Table row hover effect */
 .markdown-content tbody tr {
   transition: background-color 0.2s ease;
 }
@@ -83,7 +83,7 @@
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* 图片居中和阴影 */
+/* Image centering and shadow */
 .markdown-content img {
   display: block;
   margin-left: auto;
@@ -91,7 +91,7 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* 分隔线样式增强 */
+/* Horizontal rule style enhancement */
 .markdown-content hr {
   background: linear-gradient(to right, transparent, currentColor, transparent);
   height: 1px;
@@ -99,7 +99,7 @@
   opacity: 0.2;
 }
 
-/* 标题锚点链接 */
+/* Heading anchor links */
 .markdown-content h1:hover .header-anchor,
 .markdown-content h2:hover .header-anchor,
 .markdown-content h3:hover .header-anchor,
@@ -117,7 +117,7 @@
   text-decoration: none;
 }
 
-/* 键盘按键样式 */
+/* Keyboard key styles */
 .markdown-content kbd {
   display: inline-block;
   padding: 0.25rem 0.5rem;
@@ -135,7 +135,7 @@
   border-color: #4b5563;
 }
 
-/* 脚注样式 */
+/* Footnote styles */
 .markdown-content .footnotes {
   margin-top: 2rem;
   padding-top: 1rem;
@@ -147,7 +147,7 @@
   border-top-color: #374151;
 }
 
-/* 警告/提示框样式（如果使用扩展语法） */
+/* Alert/callout box styles (if using extended syntax) */
 .markdown-content .alert {
   padding: 1rem;
   margin: 1rem 0;
