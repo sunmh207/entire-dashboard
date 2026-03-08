@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import RepoList from '~/features/gitrepo/components/RepoList.vue'
+import RepoList from '~/features/repository/components/RepoList.vue'
 
 definePageMeta({
   layout: 'admin',

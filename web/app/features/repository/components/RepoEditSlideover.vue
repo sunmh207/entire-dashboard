@@ -3,18 +3,18 @@ import { repoApi } from '../api/repo.api'
 import type { FormSubmitEvent } from '#ui/types'
 import { PLATFORM_OPTIONS } from '../constants/repo.constants'
 import { repoFormSchema } from '../schemas/repo.schema'
-import type { RepoCreateParams, RepoDTO } from '~/features/gitrepo/types/repoDTO'
+import type { RepoRowVO, RepoUpdateParams } from '~/features/repository/types/repoDTO'
 
 const emit = defineEmits<{
-  ok: [repo: RepoDTO]
+  ok: []
 }>()
 
 const message = useMessage()
 const toast = useToast()
+const currentRepoId = ref<number>(0)
 const formRef = ref()
 const loading = ref(false)
 const validatingToken = ref(false)
-const submitMode = ref<'confirm' | 'saveAndContinue'>('confirm')
 const showAccessToken = ref(false)
 
 async function handleValidateToken() {
@@ -53,44 +53,55 @@ async function handleValidateToken() {
   }
 }
 
-const { open, state, resetForm } = useModalForm<RepoCreateParams>({
+const { open, state, resetForm } = useModalForm<RepoUpdateParams>({
+  id: 0,
   name: '',
   webUrl: '',
   platform: 'GITLAB',
   accessToken: '',
 })
 
-async function onSubmit(event: FormSubmitEvent<RepoCreateParams>) {
+function openEdit(repo: RepoRowVO) {
+  currentRepoId.value = repo.id
+  state.id = repo.id
+  state.name = repo.name
+  state.webUrl = repo.webUrl
+  state.platform = repo.platform
+  state.accessToken = repo.accessToken
+  showAccessToken.value = false
+  open.value = true
+}
+
+async function onSubmit(event: FormSubmitEvent<RepoUpdateParams>) {
   if (loading.value) return
   loading.value = true
 
   try {
-    const repo = await repoApi.create(event.data)
-    message.success('Repository created successfully')
-
-    if (submitMode.value === 'saveAndContinue') {
-      state.name = ''
-      state.webUrl = ''
-      emit('ok', repo)
-    } else {
-      resetForm()
-      open.value = false
-      emit('ok', repo)
+    const updateParams: RepoUpdateParams = {
+      id: currentRepoId.value,
+      name: event.data.name,
+      webUrl: event.data.webUrl,
+      platform: event.data.platform,
+      accessToken: event.data.accessToken,
     }
+    await repoApi.update(updateParams)
+    message.success('Repository updated successfully')
+    open.value = false
+    emit('ok')
   } catch (error: any) {
-    toast.add({
-      title: 'Create failed',
-      description: error.message || 'Failed to create repository, please try again',
-      color: 'error',
-    })
+    message.error('Failed to update repository')
   } finally {
     loading.value = false
   }
 }
+
+defineExpose({
+  open,
+  openEdit,
+})
 </script>
 
 <template>
-  <UButton label="New Repository" icon="i-lucide-plus" color="primary" @click="open = true" />
   <USlideover
     v-model:open="open"
     :ui="{
@@ -101,7 +112,7 @@ async function onSubmit(event: FormSubmitEvent<RepoCreateParams>) {
     }"
   >
     <template #header>
-      <h2 class="text-base font-medium">Create Repository</h2>
+      <h2 class="text-base font-medium">Edit Repository</h2>
       <UButton color="neutral" variant="ghost" icon="i-lucide-x" size="md" square @click="open = false" />
     </template>
 
@@ -161,18 +172,11 @@ async function onSubmit(event: FormSubmitEvent<RepoCreateParams>) {
     <template #footer>
       <UButton label="Cancel" color="neutral" variant="subtle" @click="open = false" />
       <UButton
-        label="Save & Continue"
-        color="primary"
-        variant="outline"
-        :loading="loading"
-        @click="submitMode = 'saveAndContinue'; formRef?.submit()"
-      />
-      <UButton
         label="Confirm"
         color="success"
         variant="solid"
         :loading="loading"
-        @click="submitMode = 'confirm'; formRef?.submit()"
+        @click="formRef?.submit()"
       />
     </template>
   </USlideover>
