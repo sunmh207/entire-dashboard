@@ -8,7 +8,7 @@ import type { LoginDTO } from '../types/auth.dto'
 import { ROUTES } from '~/shared/constants/routes'
 
 export function useAuth() {
-  const user = useState<UserDTO | null>('auth:user', () => null)
+  const user = useState<string | null>('auth:user', () => null)
   const loading = ref(false)
   const error = ref<Error | null>(null)
 
