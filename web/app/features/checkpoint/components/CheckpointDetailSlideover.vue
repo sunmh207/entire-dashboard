@@ -85,7 +85,7 @@ const stepsLabel = (idx: number) => {
   <USlideover
     v-model:open="open"
     :ui="{
-      content: 'right-0 inset-y-0 w-[900px] max-w-[96vw]',
+      content: 'right-0 inset-y-0 w-[1200px] max-w-[96vw]',
       header: 'flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700',
       body: 'p-0 overflow-hidden flex flex-col',
     }"
