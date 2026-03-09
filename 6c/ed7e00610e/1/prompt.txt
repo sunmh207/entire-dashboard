@@ -1,0 +1,40 @@
+/Users/sunminghui/Downloads/webhook-test 目录是某一个项目的entire/checkpoints/v1分支，它符合entire的提交目录规范。请读取里面的session目录下full.jsonl以及相关文件并进行解析，得到其中的规则。
+本项目要依据此规则完成下面功能的方案设计：
+1.checkpoint中session的相关信息展示
+2.session中人与AI Agent交互过程，包括用到的tools
+3.修改文件列表以及文件修改详情展示
+见截图示意图
+
+分析出结果并给出功能的设计方案。
+尽可能考虑周全，方案要具有可扩展性、可维护性，如有疑问，请列出问题清单给我确认。
+
+===entire的提交目录===
+entire/checkpoints/v1 分支 (orphan branch，独立于主分支)
+│
+└── 树结构 (Git Tree，非文件系统)
+    └── <checkpoint_id[:2]>/<checkpoint_id[2:]>/     # 分片路径，如 a3/b2c4d5e6f7/
+        ├── metadata.json          # CheckpointSummary（聚合统计）
+        ├── 0/                     # 第一个 session（多 session 时 0-based）
+        │   ├── metadata.json      # CommittedMetadata（含 token、attribution）
+        │   ├── full.jsonl         # 会话转录（Claude Code 格式）
+        │   ├── prompt.txt         # 用户提示词
+        │   ├── context.md         # 生成的上下文
+        │   └── content_hash.txt
+        ├── 1/                     # 第二个 session（如有）
+        └── tasks/<tool_use_id>/   # Task 子 agent 检查点（如有）
+
+---
+
+四、问题确认
+
+1.“Steps” 定义:user→assistant 轮数 
+
+2.Checkpoint 入口：页面admin/checkpoints的列表中，用户点击某一个checkpoint记录的commit message列，滑出一个nuxt的USlideover组件，展示详情。
+
+3.Transcript 解析位置：前端解析
+
+4.tasks/ 子 agent： 本次不支持
+
+5.Diff 展示：标准 unified diff展示，暂不需要语法高亮
+
+6.路径展示:展示时需要统一 strip 项目根为相对路径
