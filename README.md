@@ -125,3 +125,11 @@ Once the system is up and running:
 
 1. Go to **Repositories**, add a repository, and sync its data.
 2. Visit **Overview / Checkpoints** to explore your synced data.
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="docs/imgs/snapshot_overview.png" alt="Dashboard Overview" width="800" />
+</p>
+
+The dashboard provides a comprehensive view of your AI agent sessions, showing checkpoint history, commit activity, and repository statistics at a glance.
