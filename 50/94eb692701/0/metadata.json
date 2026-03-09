@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "5094eb692701",
+  "session_id": "f847f7ff-49cd-49b1-aebc-19ccecbe7b75",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-09T15:38:32.546764Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".dockerignore",
+    "Dockerfile",
+    "docker-compose.yml",
+    "docker/nginx.conf",
+    "docker/supervisord.conf"
+  ],
+  "agent": "Cursor",
+  "model": "default",
+  "turn_id": "0c26e904f7dd",
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-09T15:38:32.526357Z",
+    "agent_lines": 255,
+    "human_added": 0,
+    "human_modified": 7,
+    "human_removed": 0,
+    "total_committed": 262,
+    "agent_percentage": 97.32824427480917
+  }
+}

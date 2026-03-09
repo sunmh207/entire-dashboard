@@ -1,0 +1,3 @@
+参考/Users/sunminghui/www/private/mzfuture/ai-codereview-pro/local目录下的Dockerfile和docker-compose.yml,给当前项目制作Dockerfile和docker-compose.yml，能够让将本项目前后端打包到镜像里。
+
+尽可能考虑周全，如有疑问，列出问题清单。
