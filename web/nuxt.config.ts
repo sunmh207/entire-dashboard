@@ -10,6 +10,12 @@ export default defineNuxtConfig({
     icon: {
         provider: 'none',
         clientBundle: {
+            icons:[
+                'lucide:chevrons-left',
+                'lucide:chevron-left',
+                'lucide:chevrons-right',
+                'lucide:chevron-right',
+            ],
             // scan all components in the project and include icons
             scan: true,
             // include all custom collections in the client bundle

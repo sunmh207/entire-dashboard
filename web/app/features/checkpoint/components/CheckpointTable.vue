@@ -196,7 +196,7 @@ function getRowMenuItems(row: Row<CheckpointDTO>): DropdownMenuItem[] {
     { type: 'label', label: 'Actions' },
     {
       label: 'View details',
-      icon: 'i-lucide-panel-right-open',
+      icon: 'i-lucide-eye',
       onSelect: () => openCheckpointDetail(row.original),
     },
     {
