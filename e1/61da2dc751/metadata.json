@@ -1,0 +1,19 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "e161da2dc751",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "web/app/features/checkpoint/components/CheckpointDetailSlideover.vue",
+    "web/app/features/checkpoint/utils/file-tree.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/e1/61da2dc751/0/metadata.json",
+      "transcript": "/e1/61da2dc751/0/full.jsonl",
+      "content_hash": "/e1/61da2dc751/0/content_hash.txt",
+      "prompt": "/e1/61da2dc751/0/prompt.txt"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "e161da2dc751",
+  "session_id": "e93ccfcf-c26c-4606-9514-be61a799c987",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-09T06:17:21.739603Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "web/app/features/checkpoint/components/CheckpointDetailSlideover.vue",
+    "web/app/features/checkpoint/utils/file-tree.ts"
+  ],
+  "agent": "Cursor",
+  "model": "composer-1.5",
+  "turn_id": "4ffda05de81e",
+  "session_metrics": {
+    "turn_count": 3
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-09T06:17:21.722521Z",
+    "agent_lines": 201,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 201,
+    "agent_percentage": 100
+  }
+}
