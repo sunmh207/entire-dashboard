@@ -1,0 +1,3 @@
+/admin/checkpoints页面 Commit Message点击显示详情，但是 Commit Message样式与其它字段相同，看不出可以点击。请优化：
+1.优化Commit Message 列的样式，让用户看到就知道可点击
+2.在操作菜单增加一项，也可以打开详情。

@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "6ced7e00610e",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "web/app/features/checkpoint/api/session.api.ts",
+    "web/app/features/checkpoint/components/CheckpointDetailSlideover.vue",
+    "web/app/features/checkpoint/components/CheckpointTable.vue",
+    "web/app/features/checkpoint/components/SessionFileDiffView.vue",
+    "web/app/features/checkpoint/components/SessionTranscriptViewer.vue",
+    "web/app/features/checkpoint/types/session.types.ts",
+    "web/app/features/checkpoint/utils/format-diff.ts",
+    "web/app/features/checkpoint/utils/transcript-parser.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/6c/ed7e00610e/0/metadata.json",
+      "transcript": "/6c/ed7e00610e/0/full.jsonl",
+      "content_hash": "/6c/ed7e00610e/0/content_hash.txt",
+      "prompt": "/6c/ed7e00610e/0/prompt.txt"
+    }
+  ]
+}
