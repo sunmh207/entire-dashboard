@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/imgs/dashboard.png" alt="Dashboard Overview" width="800" />
+</p>
+
 [中文版](./README.zh-CN.md) | English
 
 <h2 align="center">Every commit tells a story, and now you can see it.</h2>
