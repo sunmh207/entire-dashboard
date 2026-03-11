@@ -1,0 +1,18 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "0898c39b6c88",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "server/src/main/resources/application.yaml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/08/98c39b6c88/0/metadata.json",
+      "transcript": "/08/98c39b6c88/0/full.jsonl",
+      "content_hash": "/08/98c39b6c88/0/content_hash.txt",
+      "prompt": ""
+    }
+  ]
+}

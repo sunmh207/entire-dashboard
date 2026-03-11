@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "0898c39b6c88",
+  "session_id": "unknown",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-11T14:05:49.087343Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "server/src/main/resources/application.yaml"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "c1c9d74d188f",
+  "session_metrics": {
+    "turn_count": 11
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-11T14:05:49.08631Z",
+    "agent_lines": 0,
+    "human_added": 3,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 3,
+    "agent_percentage": 0
+  }
+}
