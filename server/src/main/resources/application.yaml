@@ -23,6 +23,9 @@ auth:
     refresh-token-ttl: 2592000000  # 30 days
 
 app:
+  user:
+    username: ${APP_USERNAME:admin}
+    password: ${APP_PASSWORD:admin}
   git:
     data-path: ./data
     default-branch: entire/checkpoints/v1
