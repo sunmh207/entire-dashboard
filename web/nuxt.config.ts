@@ -15,6 +15,8 @@ export default defineNuxtConfig({
                 'lucide:chevron-left',
                 'lucide:chevrons-right',
                 'lucide:chevron-right',
+                'lucide:panel-left-close',
+                'lucide:panel-left-open',
             ],
             // scan all components in the project and include icons
             scan: true,
