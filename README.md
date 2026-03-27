@@ -76,9 +76,11 @@ curl -fsSL https://entire.io/install.sh | bash
 
 After installation, configure the CLI in your target repository to start capturing AI Agent session data. For details, see [entireio/cli](https://github.com/entireio/cli).
 
+Detailed developer documentation is available here: [Development Guide](./docs/development.md)
+
 ### Run with Docker
 
-Recommended: Use Docker Compose to quickly start the frontend, backend, and database without installing Java, Node, or MySQL locally.
+Use Docker Compose to quickly start the frontend, backend, and database without installing Java, Node, or MySQL locally.
 
 1. **Clone the repository**:
    ```bash
