@@ -22,7 +22,9 @@ export function buildFileTree(
   }
 
   for (const fc of fileChanges) {
-    const parts = fc.file.split('/').filter(Boolean)
+    const path = typeof fc?.file === 'string' ? fc.file.trim() : ''
+    if (!path) continue
+    const parts = path.split('/').filter(Boolean)
     if (parts.length === 0) continue
 
     let current = root
@@ -36,11 +38,11 @@ export function buildFileTree(
       if (isLast) {
         current.children.push({
           name: part,
-          fullPath: fc.file,
+          fullPath: path,
           children: [],
           isFile: true,
-          additions: fc.additions,
-          deletions: fc.deletions,
+          additions: fc.additions ?? 0,
+          deletions: fc.deletions ?? 0,
         })
       } else {
         let folder = current.children.find((c) => !c.isFile && c.name === part)

@@ -1,6 +1,7 @@
 package com.mzfuture.entire.checkpoint.service.impl;
 
 import com.mzfuture.entire.checkpoint.config.CheckpointSyncProperties;
+import com.mzfuture.entire.checkpoint.dto.response.NormalizedTranscriptDTO;
 import com.mzfuture.entire.checkpoint.dto.response.SessionDTO;
 import com.mzfuture.entire.checkpoint.entity.Checkpoint;
 import com.mzfuture.entire.checkpoint.entity.Session;
@@ -9,6 +10,7 @@ import com.mzfuture.entire.checkpoint.mapper.SessionMapper;
 import com.mzfuture.entire.checkpoint.repository.CheckpointRepository;
 import com.mzfuture.entire.checkpoint.repository.SessionRepository;
 import com.mzfuture.entire.checkpoint.service.SessionService;
+import com.mzfuture.entire.checkpoint.transcript.TranscriptNormalizer;
 import com.mzfuture.entire.common.exception.Errors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,17 +27,20 @@ public class SessionServiceImpl implements SessionService {
     private final CheckpointRepository checkpointRepository;
     private final CheckpointGitReader gitReader;
     private final CheckpointSyncProperties syncProperties;
+    private final TranscriptNormalizer transcriptNormalizer;
 
     public SessionServiceImpl(SessionRepository sessionRepository,
                                SessionMapper sessionMapper,
                                CheckpointRepository checkpointRepository,
                                CheckpointGitReader gitReader,
-                               CheckpointSyncProperties syncProperties) {
+                               CheckpointSyncProperties syncProperties,
+                               TranscriptNormalizer transcriptNormalizer) {
         this.sessionRepository = sessionRepository;
         this.sessionMapper = sessionMapper;
         this.checkpointRepository = checkpointRepository;
         this.gitReader = gitReader;
         this.syncProperties = syncProperties;
+        this.transcriptNormalizer = transcriptNormalizer;
     }
 
     @Override
@@ -78,5 +83,14 @@ public class SessionServiceImpl implements SessionService {
             return Optional.empty();
         }
         return gitReader.getFileContent(checkpoint.getRepoId(), revOpt.get(), path);
+    }
+
+    @Override
+    public Optional<NormalizedTranscriptDTO> getNormalizedTranscript(Long sessionId) {
+        Optional<String> raw = getContent(sessionId, "transcript");
+        if (raw.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(transcriptNormalizer.normalize(raw.get()));
     }
 }

@@ -1,5 +1,6 @@
 package com.mzfuture.entire.checkpoint.service;
 
+import com.mzfuture.entire.checkpoint.dto.response.NormalizedTranscriptDTO;
 import com.mzfuture.entire.checkpoint.dto.response.SessionDTO;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface SessionService {
     /// Get session content from Git (prompt, context, or transcript). Uses metadata branch revision.
     /// @param file one of: prompt, context, transcript (maps to prompt.txt, context.md, full.jsonl)
     Optional<String> getContent(Long sessionId, String file);
+
+    /// Parsed transcript for admin UI (OpenCode JSON, Cursor NDJSON, or unknown with warnings).
+    Optional<NormalizedTranscriptDTO> getNormalizedTranscript(Long sessionId);
 }

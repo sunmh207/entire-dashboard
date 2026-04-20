@@ -14,7 +14,7 @@ function formatTime(ms?: number): string {
 
 <template>
   <div class="space-y-4">
-    <div v-for="(msg, i) in props.parsed.messages" :key="msg.id || i" class="space-y-2">
+    <div v-for="(msg, i) in (props.parsed.messages ?? [])" :key="msg.id || i" class="space-y-2">
       <!-- User message -->
       <div
         v-if="msg.role === 'user'"
@@ -48,19 +48,19 @@ function formatTime(ms?: number): string {
           <div v-if="msg.text" class="text-sm text-default whitespace-pre-wrap break-words">
             {{ msg.text }}
           </div>
-          <div v-if="msg.toolsCount > 0" class="flex items-center gap-2">
+          <div v-if="(msg.toolsCount ?? 0) > 0" class="flex items-center gap-2">
             <UButton
               size="xs"
               color="neutral"
               variant="soft"
               :icon="'i-lucide-wrench'"
             >
-              {{ msg.toolsCount }} tool{{ msg.toolsCount > 1 ? 's' : '' }} used
+              {{ msg.toolsCount }} tool{{ (msg.toolsCount ?? 0) > 1 ? 's' : '' }} used
             </UButton>
             <div class="flex flex-wrap gap-1">
               <UBadge
-                v-for="t in msg.tools"
-                :key="t.callID"
+                v-for="(t, ti) in (msg.tools ?? [])"
+                :key="t.callID || `tool-${ti}`"
                 size="xs"
                 variant="subtle"
                 color="neutral"
@@ -69,10 +69,10 @@ function formatTime(ms?: number): string {
               </UBadge>
             </div>
           </div>
-          <div v-if="msg.tools.length > 0" class="text-xs space-y-1 mt-2">
+          <div v-if="(msg.tools ?? []).length > 0" class="text-xs space-y-1 mt-2">
             <details
-              v-for="t in msg.tools"
-              :key="t.callID"
+              v-for="(t, ti) in (msg.tools ?? [])"
+              :key="t.callID || `toold-${ti}`"
               class="border border-gray-200 dark:border-gray-700 rounded px-2 py-1"
             >
               <summary class="cursor-pointer font-mono text-gray-600 dark:text-gray-400">

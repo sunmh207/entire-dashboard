@@ -1,5 +1,6 @@
 package com.mzfuture.entire.checkpoint.controller;
 
+import com.mzfuture.entire.checkpoint.dto.response.NormalizedTranscriptDTO;
 import com.mzfuture.entire.checkpoint.dto.response.SessionDTO;
 import com.mzfuture.entire.checkpoint.service.SessionService;
 import com.mzfuture.entire.common.dto.IdPayload;
@@ -49,6 +50,16 @@ public class SessionController {
             @Parameter(description = "File: prompt, context, or transcript")
             @RequestParam String file) {
         return sessionService.getContent(sessionId, file)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping(value = "/transcript/normalized", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Get normalized transcript", description = "Returns stable JSON for UI (OpenCode JSON, Cursor NDJSON, or unknown with warnings). Raw file unchanged; use /content?file=transcript for original text.")
+    public ResponseEntity<NormalizedTranscriptDTO> normalizedTranscript(
+            @Parameter(description = "Session ID")
+            @RequestParam Long sessionId) {
+        return sessionService.getNormalizedTranscript(sessionId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
