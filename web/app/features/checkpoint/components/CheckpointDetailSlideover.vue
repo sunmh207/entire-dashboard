@@ -55,8 +55,13 @@ async function loadTranscript(sessionId?: number) {
   }
   transcriptLoading.value = true
   try {
-    transcriptRaw.value = await sessionApi.getContent(sessionId, 'transcript')
-    parsedTranscript.value = parseTranscript(transcriptRaw.value)
+    try {
+      parsedTranscript.value = await sessionApi.getNormalizedTranscript(sessionId)
+      transcriptRaw.value = null
+    } catch {
+      transcriptRaw.value = await sessionApi.getContent(sessionId, 'transcript')
+      parsedTranscript.value = parseTranscript(transcriptRaw.value)
+    }
   } catch {
     transcriptRaw.value = null
     parsedTranscript.value = null
@@ -111,7 +116,7 @@ const stepsLabel = (idx: number) => {
   const session = sessions.value[idx]
   if (!session) return ''
   if (parsedTranscript.value && idx === selectedSessionIndex.value) {
-    return `${parsedTranscript.value.stepsCount} steps`
+    return `${parsedTranscript.value.stepsCount ?? 0} steps`
   }
   return ''
 }

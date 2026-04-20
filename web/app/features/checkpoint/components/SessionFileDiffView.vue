@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 const diffContent = computed(() => {
-  const messagesWithFile = props.parsed.messages.filter((m) =>
+  const messagesWithFile = (props.parsed.messages ?? []).filter((m) =>
     m.diffs?.some((d) => d.file === props.file)
   )
   const lastMsg = messagesWithFile[messagesWithFile.length - 1]

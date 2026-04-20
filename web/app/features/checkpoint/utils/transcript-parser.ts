@@ -31,7 +31,16 @@ export interface MessageView {
   createdAt?: number
 }
 
+/// Metadata from `GET /session/transcript/normalized` (backend-normalized transcript).
+export interface NormalizedTranscriptMeta {
+  sourceFormat: string
+  rawBytesLength: number
+  warnings?: string[]
+}
+
 export interface ParsedTranscript {
+  schemaVersion?: number
+  meta?: NormalizedTranscriptMeta
   title?: string
   projectRoot?: string
   messages: MessageView[]
