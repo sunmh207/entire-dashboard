@@ -1018,7 +1018,6 @@ package com.mzfuture.entire.checkpoint.transcript.format;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.NullNode;
 import com.mzfuture.entire.checkpoint.dto.response.NormalizedTranscriptDTO;
 import com.mzfuture.entire.checkpoint.dto.response.NormalizedTranscriptMetaDTO;
 import com.mzfuture.entire.checkpoint.dto.response.TranscriptFileChangeSummaryDTO;
@@ -1104,8 +1103,11 @@ public class ClaudeCodeFormat implements TranscriptFormat {
             }
         }
 
-        // Fold tool_result from any user line into the most recent assistant tool_use.
-        foldToolResults(messages);
+        // Note on tool_result folding: when a user line carries tool_result content blocks,
+        // we could backfill the matching assistant tool_use.output. We don't, because
+        // `parse()` already folded the tool_result text into the user message's `text`
+        // field via `buildMessage`. The result is visible in the user turn; matching it
+        // back to a tool card on a prior assistant turn is a follow-up enhancement.
 
         List<TranscriptFileChangeSummaryDTO> fileChanges = buildFileChanges(messages);
 
@@ -1177,20 +1179,6 @@ public class ClaudeCodeFormat implements TranscriptFormat {
         }
         if (existing.getTools() != null) {
             existing.setToolsCount(existing.getTools().size());
-        }
-    }
-
-    private void foldToolResults(List<TranscriptMessageViewDTO> messages) {
-        for (int i = 0; i < messages.size(); i++) {
-            TranscriptMessageViewDTO mv = messages.get(i);
-            if (!"user".equalsIgnoreCase(mv.getRole())) continue;
-            // Re-extract from the original would require keeping the raw content around.
-            // Since `parse()` already folded content into `mv.text`, we re-derive from the
-            // message by re-parsing would be wasteful. Simpler: do nothing here. Tool result
-            // text becomes part of the user message text; matching it back to tool_use
-            // requires the original content, which we don't store.
-            // Tradeoff: tool output is visible in the user turn but not in the assistant's
-            // tool card. Acceptable for v1.
         }
     }
 
