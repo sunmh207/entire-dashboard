@@ -1,0 +1,34 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "e19e4f141c6b",
+  "session_id": "a22b2e4d-2766-4341-bd52-ad7223ac60e1",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-02T01:36:43.234327Z",
+  "branch": "feature/20260602",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "docs/superpowers/specs/2026-06-02-transcript-multiformat-design.md"
+  ],
+  "agent": "Claude Code",
+  "model": "MiniMax-M3",
+  "turn_id": "1ea32cb4fbed",
+  "token_usage": {
+    "input_tokens": 380571,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 961091,
+    "output_tokens": 17131,
+    "api_call_count": 29
+  },
+  "session_metrics": {
+    "turn_count": 5
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-02T01:36:43.140131Z",
+    "agent_lines": 0,
+    "human_added": 453,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 453,
+    "agent_percentage": 0
+  }
+}

@@ -1,0 +1,22 @@
+TranscriptNormalizer.java类里的isLikelyCursorNdjson方法是什么作用？
+
+---
+
+目录/Users/sunminghui/Downloads/others/entireio-cli是 entireio-cli源码，它是将AI Agent（Cursor/ClaudeCode/Codex等）对话过程记录的工具。
+本项目在是解析该工具生成内容的格式并展示，刚才isLikelyCursorNdjson是不是限制了Cursor这个工具的格式，而实际上我们需要支持多种格式的工具。现在就遇到了Claude Code提交的内容，无法展示（isLikelyCursorNdjson检查为false）
+
+---
+
+总体结构OK，请继续
+
+---
+
+OK，请继续
+
+---
+
+可以简化，请继续
+
+---
+
+OK，请继续
