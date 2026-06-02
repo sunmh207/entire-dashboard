@@ -122,7 +122,9 @@ public class TranscriptNormalizer {
                 } catch (Exception e) {
                     warnings.add(f.name() + " parse error: " + e.getMessage());
                 }
-                // matches() hit but parse() failed: keep trying lower priorities
+                // matches() hit but parse() failed: stop here — the matched format
+                // is the right agent, the data is just malformed. Don't try lower
+                // priorities (a malformed ClaudeCode file is still ClaudeCode).
                 break;
             }
         }
@@ -146,9 +148,9 @@ with `sourceFormat = "unknown"` and warnings collected from each attempt.
 |---|---|---|
 | 100 | `opencode-json` | trimmed parses as single JSON object, has `info` + `messages` |
 | 90 | `gemini-json` | trimmed parses as single JSON object, has `sessionId` + `messages`, no `info` |
-| 80 | `claude-code-ndjson` | non-empty first line is JSON object, `type ∈ {user, assistant}`, has `message` |
+| 80 | `claude-code-ndjson` | **any** line is JSON object with `type ∈ {user, assistant}` and `message` |
 | 75 | `cursor-ndjson` | non-empty first line is JSON object, `role ∈ {user, assistant}`, has `message` |
-| 70 | `droid-ndjson` | non-empty first line is JSON object, `type == "message"`, inner `message.role` exists |
+| 70 | `droid-ndjson` | **any** line is JSON object with `type == "message"` and inner `message.role` |
 | 60 | `codex-ndjson` | **any** line has `type ∈ {session_meta, response_item, event_msg, turn_context}` |
 | 50 | `copilot-cli-ndjson` | **any** line has `type ∈ {session.start, user.message, assistant.message, tool.execution_complete}` |
 | 40 | `pi-ndjson` | non-empty first line is JSON object, `type == "session"`, has `version` |
@@ -156,10 +158,13 @@ with `sourceFormat = "unknown"` and warnings collected from each attempt.
 ### 3.2 Detection rules
 
 - **First-line vs any-line**:
-  - ClaudeCode / Cursor / Droid / Pi use first-line detection (`type`/`role`/`version`
-    is stable on the first meaningful line).
-  - Codex / Copilot use any-line detection (their first line is often a header like
-    `session_meta` / `session.start`, not a message).
+  - ClaudeCode / Droid use any-line detection because their first line is often a
+    non-message header: ClaudeCode starts with `type:"system"`, Droid starts with
+    `type:"session_start"`.
+  - Cursor / Pi use first-line detection: Cursor has no system headers, Pi's
+    first line is the `type:"session"` header.
+  - Codex / Copilot use any-line detection (their first line is a header like
+    `session_meta` / `session.start`).
 - **No full-line pre-scan** (replaces the old `isLikelyCursorNdjson`). The new
   `matches()` is O(1) for first-line formats and O(n) for any-line formats, but
   stops at first hit. `parse()` is responsible for tolerating bad rows.
