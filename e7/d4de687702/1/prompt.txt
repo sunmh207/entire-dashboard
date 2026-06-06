@@ -1,0 +1,13 @@
+在页面/admin/checkpoints，点击“Commit Message”标题打开详情，展示“Session”和“Files”。点击某一个session右侧详情显示正常。但是点击某一个变更的Files，右侧仅文件路径，不显示变更内容，请分析原因。 我测试的是Claude Code产生的内容。
+
+---
+
+解释A和C的本质区别
+
+---
+
+按照C的方案改
+
+---
+
+感觉现在使用的方案C不好，请重新改为方案A， 后端从 git 拉真实文件内容 checkpoint 元数据(commit SHA)
